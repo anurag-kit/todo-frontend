@@ -166,6 +166,8 @@ function App() {
 
   return (
     <>
+
+      <h1 className='text-4xl font-bold'> Todo Application </h1>
       <input
         ref={searchQueryRef}
         className=" mx-8 my-4 w-6/12  px-4 py-2 rounded border outline-none border-slate-600"

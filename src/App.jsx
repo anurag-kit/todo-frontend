@@ -80,10 +80,11 @@ function App() {
   const handleGetTodos = async () => {
     try {
       setIsLoading(true);
+      setError(null);
 
       const TODO_URL = `${BACKEND_URL}/todo?search=${search}&page=${page}&limit=${limit}`;
       const response = await axios.get(TODO_URL);
-      const todos = response.data.todos;
+      const todos = response.data.data;
       const totoTodosDocument = response.data.totalDocumentsCount;
       const todoLimit = response.data.limit;
       console.log("limit", todoLimit);
@@ -94,7 +95,7 @@ function App() {
       console.log(todos);
 
       setTodos(todos);
-      setIsLoading(false);
+      
     } catch (error) {
       console.log("'error", error);
       setError(error.message);
@@ -189,7 +190,7 @@ function App() {
       </button>
 
       <div className="p-8 grid grid-cols-3 gap-6">
-        {todos.map((todo, i) => {
+        {todos?.map((todo, i) => {
           const { _id: id, title, description } = todo;
           return (
             <div className="p-4 rounded-lg shadow-md space-y-2">
